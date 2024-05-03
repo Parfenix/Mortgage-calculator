@@ -1,3 +1,5 @@
+import updateModel from "../utils/updateModel.js";
+
 function init(getData) {
     
     const radioButtons = document.querySelectorAll('input[name="program"]'); 
@@ -21,16 +23,8 @@ function init(getData) {
             console.log(parseFloat(this.value));
             console.log(this.id)
 
-            this.dispatchEvent(new CustomEvent('updateForm', {
-                bubbles: true,
-                detail: {
-                    selectedProgram: parseFloat(this.value),
-                    onUpdate: 'radioProgram',
-                    id: this.id,
-                },
-            }))
-
-        })
+             
+        });
     })
 }
 
