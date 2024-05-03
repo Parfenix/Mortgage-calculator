@@ -1,4 +1,4 @@
-import updateModel from "../utils/updateModel.js";
+import updateModel from "./../utils/updateModel.js";
 
 function init(getData) {
     
@@ -7,7 +7,7 @@ function init(getData) {
 
     // Set program rates in radio buttons
     document.querySelector('#base-value').value = base;
-    document.querySelector('#it-value').value = it;
+    document.querySelector('#it-value').value = it; 
     document.querySelector('#gov-value').value = gov;
     document.querySelector('#zero-value').value = zero;
 
@@ -19,11 +19,11 @@ function init(getData) {
 
     radioButtons.forEach(function (radioButtons) {
         radioButtons.addEventListener('change', function () {
-            console.log(this);
-            console.log(parseFloat(this.value));
-            console.log(this.id)
-
-             
+            updateModel(this, {
+                selectedProgram: parseFloat(this.value),
+                onUpdate: 'radioProgram',
+                id: this.id,
+            })
         });
     })
 }
