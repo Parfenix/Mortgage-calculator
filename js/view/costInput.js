@@ -1,6 +1,8 @@
+import updateModel from "./../utils/updateModel.js";
+
 function init(getData ) {
     const input = document.querySelector('#input-cost');
-
+ 
     const settings = {
         numeral: true,
         numeralThousandsGroupStyle: 'thousand',
@@ -12,7 +14,6 @@ function init(getData ) {
 
     input.addEventListener('input', function() {
         const value = +cleveInput.getRawValue();
-        console.log(value);
 
         // Checking the minimum and maximum price 
         if (value < getData().minPrice || value > getData().maxPrice) {
@@ -22,10 +23,15 @@ function init(getData ) {
         if (value >= getData().minPrice &&  value <= getData().maxPrice) {
             input.closest('.param__details').classList.remove('param__details--error');
         }
-    })
+
+        updateModel(input, {
+            cost: value,
+            onUpdate: 'inputCost', 
+        })
+    }) 
 
     input.addEventListener('change', function() {
-        const value = +cleveInput.getRawValue();
+        let value = +cleveInput.getRawValue();
 
         if (value > getData().maxPrice) {
             input.closest('.param__details').classList.remove('param__details--error');
@@ -36,6 +42,13 @@ function init(getData ) {
             input.closest('.param__details').classList.remove('param__details--error');
             cleveInput.setRawValue(getData().minPrice);
         }
+
+        value = +cleveInput.getRawValue();
+
+        updateModel(input, {
+            cost: value,
+            onUpdate: 'inputCost', 
+        })
     })
 } 
 
