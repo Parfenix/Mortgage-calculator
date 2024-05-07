@@ -26,10 +26,10 @@ function init(getData) {
 
         updateModel(input, {
             time: value,
-            onUpdate: 'inputTime ', 
+            onUpdate: 'inputTime', 
         })
     }) 
-
+ 
     input.addEventListener('change', function() {
         let value = +cleveInput.getRawValue();
 
