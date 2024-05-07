@@ -7,7 +7,9 @@ import costInput from "./view/costInput.js";
 import costRange from "./view/costRange.js";
 
 import paymentInput from "./view/paymentInput.js";
-import paymentRange from "./view/paymentRange.js";  
+import paymentRange from "./view/paymentRange.js";
+
+import timeInput from "./view/timeInput.js";
 
 
 window.onload = function () {
@@ -15,6 +17,7 @@ window.onload = function () {
     
     // Init programs
     programs(getData);
+
     // Init cost input 
     const cleveCost = costInput(getData);
     // Init cost range
@@ -24,6 +27,10 @@ window.onload = function () {
     const clevePayment = paymentInput(getData);
     // Init payment range
     const sliderPayment = paymentRange(getData);
+
+
+    // Init time input
+    const cleveTime = timeInput(getData);
 
     document.addEventListener('updateForm', (e) => {
         Model.setData(e.detail);
