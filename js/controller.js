@@ -35,6 +35,11 @@ window.onload = function () {
     // Init time range
     const sliderTime = timeRange(getData);
 
+    Model.setData({});
+    const results = Model.getResults();
+    updateResultsView(results);
+
+
     document.addEventListener('updateForm', (e) => {
         Model.setData(e.detail);
 
@@ -45,7 +50,7 @@ window.onload = function () {
         updateFormAndSliders(data);
 
         // Update results block
-        updateResultsView(results); 
+        updateResultsView(results);
     });
 
     function updateFormAndSliders(data) {

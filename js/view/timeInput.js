@@ -29,7 +29,7 @@ function init(getData) {
             onUpdate: 'inputTime', 
         })
     }) 
- 
+
     input.addEventListener('change', function() {
         let value = +cleveInput.getRawValue();
 
