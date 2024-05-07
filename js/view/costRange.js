@@ -33,6 +33,8 @@ function init(getData) {
             onUpdate: 'costSlider',
         });
     })
+
+    return slider; 
 }  
 
 export default init;

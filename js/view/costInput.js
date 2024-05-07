@@ -50,6 +50,8 @@ function init(getData ) {
             onUpdate: 'inputCost', 
         })
     })
+
+    return cleveInput; 
 } 
 
 export default init;
