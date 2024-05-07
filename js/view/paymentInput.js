@@ -1,7 +1,7 @@
 import updateModel from "./../utils/updateModel.js";
 
 function init(getData) {
-    const input = document.querySelector('#input-cost');
+    const input = document.querySelector('#input-downpayment ');
 
     const settings = {
         numeral: true,
@@ -10,48 +10,48 @@ function init(getData) {
     }; 
 
     const cleveInput = new Cleave(input, settings);
-    cleveInput.setRawValue(getData().cost);
+    cleveInput.setRawValue(getData().payment);
 
     input.addEventListener('input', function() {
         const value = +cleveInput.getRawValue();
 
-        // Checking the minimum and maximum price 
-        if (value < getData().minPrice || value > getData().maxPrice) {
+        // Checking the minimum and maximum first payment  
+        if (value < getData().getMinPayment() || value > getData().getMaxPayment()) {
             input.closest('.param__details').classList.add('param__details--error');
         }
 
-        if (value >= getData().minPrice &&  value <= getData().maxPrice) {
+        if (value >= getData().getMinPayment()  &&  value <= getData().getMaxPayment() ) {
             input.closest('.param__details').classList.remove('param__details--error');
         }
 
         updateModel(input, {
-            cost: value,
-            onUpdate: 'inputCost', 
+            payment : value,
+            onUpdate: 'inputPayment', 
         })
     }) 
 
     input.addEventListener('change', function() {
         let value = +cleveInput.getRawValue();
 
-        if (value > getData().maxPrice) {
+        if (value > getData().getMaxPayment()) {
             input.closest('.param__details').classList.remove('param__details--error');
-            cleveInput.setRawValue(getData().maxPrice);
+            cleveInput.setRawValue(getData().getMaxPayment() );
         }
 
-        if (value < getData().minPrice) {
+        if (value < getData().getMinPayment()) {
             input.closest('.param__details').classList.remove('param__details--error');
-            cleveInput.setRawValue(getData().minPrice);
+            cleveInput.setRawValue(getData().getMinPayment());
         }
 
         value = +cleveInput.getRawValue();
 
         updateModel(input, {
-            cost: value,
-            onUpdate: 'inputCost', 
+            payment: value,
+            onUpdate: 'inputPayment', 
         })
     })
 
     return cleveInput; 
-} 
+}  
 
 export default init;

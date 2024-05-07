@@ -4,14 +4,22 @@ let data = {
     minPrice: 375000,
     maxPrice: 100000000,
     minPaymentPercents: 0.15,
-    maxPaymentPercents: 0.9,  
+    maxPaymentPercents: 0.9,
+    paymentPercents: 0.5, 
+    payment: 6000000, 
+    getMinPayment: function() {
+        return this.cost * this.minPaymentPercents;
+    },
+    getMaxPayment: function() {
+        return this.cost * this.maxPaymentPercents;
+    },
     programs: {
-        base: 0.1,
+        base: 0.1, 
         it: 0.047,
         gov: 0.067,
         zero: 0.12, 
     },
-}
+} 
 
 let results = {
     rate: data.selectedProgram,
@@ -36,7 +44,7 @@ function setData(newData) {
         }
     } 
 
-    if (newData.onUpdate === 'inputCost') {
+    if (newData.onUpdate === 'inputCost' || newData.onUpdate === 'costSlider' ) {
 
         if (newData.cost < data.minPrice) {
             newData.cost = data.minPrice
@@ -45,6 +53,15 @@ function setData(newData) {
         if (newData.cost > data.maxPrice) {
             newData.cost = data.maxPrice
         };
+
+        // if the new cost is less than the original
+        if (data.payment > data.getMaxPayment()) { 
+            data.payment = data.getMaxPayment();
+        }
+        // if the count of original is less than acceptable min payment
+        if (data.payment < data.getMinPayment()) {
+            data.payment = data.getMinPayment(); 
+        }
     } 
 
     data = {
