@@ -55,19 +55,22 @@ window.onload = function () {
 
         // cost input
         if (data.onUpdate !== 'inputCost') {
-            console.log('update input cost');
             cleveCost.setRawValue(data.cost);
         }
 
         // cost slider
         if (data.onUpdate !== 'costSlider') {
-            console.log('update cost slider');
             sliderCost.noUiSlider.set(data.cost);
         }  
 
         // payment input
         if (data.onUpdate !== 'inputPayment') {
-            clevePayment.setRawValue(data.payment);
+            clevePayment.setRawValue(data.payment); 
+        }
+
+        // payment slider
+        if (data.onUpdate !== 'paymentSlider') {
+            sliderPayment.noUiSlider.set(data.paymentPercents * 100); 
         }
     }
 }
