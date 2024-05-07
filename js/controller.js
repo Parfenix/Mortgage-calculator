@@ -23,7 +23,7 @@ window.onload = function () {
     // Init payment input
     const clevePayment = paymentInput(getData);
     // Init payment range
-    const sliderPayment = paymentRange(getData); 
+    const sliderPayment = paymentRange(getData);
 
     document.addEventListener('updateForm', (e) => {
         Model.setData(e.detail);
@@ -43,6 +43,14 @@ window.onload = function () {
         // update radio btns
         if (data.onUpdate === 'radioProgram') {
             updateMinPercents(data);
+
+            // update slider
+            sliderPayment.noUiSlider.updateOptions({
+                range: {
+                    min: data.minPaymentPercents * 100,
+                    max: data.maxPaymentPercents * 100,
+                },
+            }); 
         }
 
         // cost input
